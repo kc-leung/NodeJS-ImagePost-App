@@ -1,4 +1,5 @@
 const express = require("express");
+const errorHandler = require("errorhandler");
 
 const path = require("path");
 const exphbs = require("express-handlebars");
@@ -37,7 +38,14 @@ module.exports = app => {
 
   // routes
   routes(app);
+
+  // static files
+  app.use("/public", express.static(path.join(__dirname, "../public/")));
+
   // errorhandlers
+  if ("development" === app.get("env")) {
+    app.use(errorHandler);
+  }
 
   return app;
 };
