@@ -1,5 +1,12 @@
+const express = require("express");
+
 const path = require("path");
-const exphbs = requre("express-handlebars");
+const exphbs = require("express-handlebars");
+
+const morgan = require("morgan");
+const multer = require("multer");
+
+const routes = require("../routes/index");
 
 module.exports = app => {
   // settings
@@ -16,10 +23,20 @@ module.exports = app => {
     })
   );
   app.set("view engine", ".hbs");
+
   // middlewares
+  app.use(morgan("dev"));
+  app.use(
+    multer({ dest: path.join(__dirname, "../public/upload/temp") }).single(
+      "image" //namespace holder can be changed if needed
+    )
+  );
+  // receive form data from HTML
+  app.use(express.urlencoded({ extended: false }));
+  app.use(express.json());
 
   // routes
-
+  routes(app);
   // errorhandlers
 
   return app;
