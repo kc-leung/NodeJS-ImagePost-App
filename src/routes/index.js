@@ -10,6 +10,7 @@ module.exports = app => {
   router.post("/images", image.create);
   router.post("/images/:image_id/like", image.like);
   router.get("/images/:image_id/comment", image.comment);
+  router.delete("/images/:image_id", image.delete);
 
   app.use(router);
 };

@@ -12,7 +12,7 @@ const routes = require("../routes/index");
 module.exports = app => {
   // settings
   app.set("port", process.env.PORT || 3000);
-  app.set("views", path.join(__dirname, "views"));
+  app.set("views", path.join(__dirname, "../views"));
   app.engine(
     ".hbs",
     exphbs({

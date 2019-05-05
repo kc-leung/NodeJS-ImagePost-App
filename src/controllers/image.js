@@ -8,4 +8,6 @@ ctrl.like = (req, res) => {};
 
 ctrl.comment = (req, res) => {};
 
+ctrl.delete = (req, res) => {};
+
 module.exports = ctrl;
